@@ -20,6 +20,13 @@ class ContractData extends Component {
     this.dataKey = this.contracts[this.props.contract].methods[this.props.method].cacheCall(...methodArgs)
   }
 
+  componentDidUpdate(prevProps) {
+  if (this.props.methodArgs !== prevProps.methodArgs) {
+    var methodArgs = this.props.methodArgs ? this.props.methodArgs : []
+    this.dataKey = this.contracts[this.props.contract].methods[this.props.method].cacheCall(...methodArgs)
+  }
+}
+
   render() {
     // Contract is not yet intialized.
     if(!this.props.contracts[this.props.contract].initialized) {
